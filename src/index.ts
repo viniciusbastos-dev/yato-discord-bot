@@ -1,12 +1,8 @@
 import { ExtendedClient } from "./structs/ExtendedClient";
+import config from "./config.json";
 export * from "colors";
 
 const client = new ExtendedClient();
-
 client.start();
 
-export { client };
-
-client.on("ready", () => {
-  console.log(`Logged in as ${client?.user?.tag}!`.green);
-});
+export { client, config };
