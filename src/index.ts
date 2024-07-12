@@ -1,8 +1,8 @@
-import { ExtendedClient } from "./structs/ExtendedClient";
-import config from "./config.json";
-export * from "colors";
+import { createClient } from "./discord/base";
+import { log } from "./settings";
 
-const client = new ExtendedClient();
+const client = createClient();
 client.start();
 
-export { client, config };
+process.on("uncaughtException", log.error);
+process.on("unhandledRejection", log.error);

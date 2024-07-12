@@ -1,24 +1,34 @@
 {
   "compilerOptions": {
     "lib": ["ESNext"],
+    "removeComments": true,
     "rootDir": "./src",
-    "outDir": "./dist",
+    "outDir": "dist",
     "target": "ESNext",
     "module": "CommonJS",
     "moduleResolution": "Node",
-    "sourceMap": false,
-    "emitDecoratorMetadata": true,
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
+    "skipLibCheck": true,
     "skipDefaultLibCheck": true,
-    "declaration": false,
     "resolveJsonModule": true,
     "importHelpers": true,
-    "experimentalDecorators": true
+    "baseUrl": ".",
+    "paths": {
+      "@/*":["./src/*"],
+      "@discord/*":["./src/discord/*"],
+      "@functions/*":["./src/functions/*"],
+      "@settings/*":["./src/settings/*"]
+    },
+    "typeRoots": [
+      "./node_modules/@types"
+    ]
   },
-  "include": ["src", "env.d.ts"],
+  "include": [
+    "src"
+  ],
   "exclude": [
     "node_modules",
     "**/*.spec.ts"
