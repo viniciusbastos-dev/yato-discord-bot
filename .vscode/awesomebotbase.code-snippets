@@ -2,6 +2,8 @@
 	"Slash Command": {
 		"prefix": "new.command",
 		"body": [
+		  "import { Command } from '@/discord/base'",	
+		  "import { ApplicationCommandType } from 'discord.js'",
 		  "new Command({",
 		  "    name: \"$1\",",
 		  "    description: \"$2\",",
@@ -17,6 +19,8 @@
 	"Slash Command with options": {
 		"prefix": "new.command.options",
 		"body": [
+		  "import { Command } from '@/discord/base'",	
+		  "import { ApplicationCommandType } from 'discord.js'",
 		  "new Command({",
 		  "    name: \"$1\",",
 		  "    description: \"$2\",",
@@ -40,6 +44,8 @@
 	"User Context Command": {
 		"prefix": "new.command.user",
 		"body": [
+	      "import { Command } from '@/discord/base'",	
+		  "import { ApplicationCommandType } from 'discord.js'",			
 		  "new Command({",
 		  "    name: \"$1\",",
 		  "    dmPermission,",

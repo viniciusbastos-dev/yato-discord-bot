@@ -1,11 +1,12 @@
 import { Command } from "@/discord/base";
+import { isQueueEmpty } from "@/functions/isQueueEmpty";
 import { config } from "@/settings/config";
 import { lyricsExtractor } from "@discord-player/extractor";
 import { useQueue } from "discord-player";
 import { ApplicationCommandType, EmbedBuilder } from "discord.js";
 
 new Command({
-  name: "letra",
+  name: "lyrics",
   description: "Exibe a letra da música atual.",
   dmPermission: false,
   type: ApplicationCommandType.ChatInput,
@@ -15,11 +16,9 @@ new Command({
     const lyricsFinder = lyricsExtractor(process.env.GENIUS_CLIENT_ACCESS);
     const queue = useQueue(interaction.guild.id);
 
-    if (!queue || !queue?.currentTrack) {
-      return interaction.followUp({
-        content: "Não há nenhuma música tocando no momento.",
-      });
-    }
+    const isQueueEmptyCheck = await isQueueEmpty(interaction, queue);
+
+    if (isQueueEmptyCheck) return;
 
     function removeEmojis(text: string) {
       return text.replace(
@@ -29,7 +28,7 @@ new Command({
     }
 
     const searchResult = await lyricsFinder
-      .search(removeEmojis(queue?.currentTrack?.title))
+      .search(removeEmojis(queue?.currentTrack?.title!))
       .catch(() => null);
 
     if (!searchResult) {
